@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_011724) do
     t.string "image"
     t.string "h1"
     t.string "body"
+    t.integer "score"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
