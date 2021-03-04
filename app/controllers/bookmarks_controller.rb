@@ -10,9 +10,14 @@ class BookmarksController < ApplicationController
     end 
 
     def create 
-        bookmark = Bookmark.create(url: params[:url], image: params[:image], h1: params[:h1], body: params[:body], user_id: params[:user_id])
+        # add code to receive the url, then do the follwoing web scraping 
+        page = MetaInspector.new(params[:url])
+        bookmark = Bookmark.create(url: page.url, image: page.images.favicon, h1: page.h1, body: page.description, user_id: 1)
+        puts bookmark
+        # bookmark = Bookmark.create(url: params[:url], image: params[:image], h1: params[:h1], body: params[:body], user_id: params[:user_id])
         render json: bookmark 
     end 
+    
 
     def update 
         bookmark = Bookmark.update(url: params[:url], image: params[:image], h1: params[:h1], body: params[:body], user_id: params[:user_id])
