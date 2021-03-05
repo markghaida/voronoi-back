@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # resources :bookmarks
   get '/bookmarks', to: 'bookmarks#index'
   get '/bookmarks/search/:input', to: 'bookmarks#search'
+  post '/bookmarks/search', to: 'bookmarks#search'
   # get '/bookmarks/:id', to: 'bookmarks#show'
   post '/bookmarks', to: 'bookmarks#create'
   get '/bookmarks/:id', to: 'bookmarks#destroy'

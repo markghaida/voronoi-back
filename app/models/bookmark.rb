@@ -18,9 +18,9 @@ class Bookmark < ApplicationRecord
 
 # create a method that takes in the search input  
 def self.graded_bookmarks(searchInput)
-    byebug
+    # byebug
 # goes through a for loop of all the bookmarks,
-    Bookmark.all.each do |bookmark|
+    all_bookmarks = Bookmark.all.each do |bookmark|
         # set the bookmark.score = 0 at the top of this method, then
         bookmark.score = 0 
         # with if conditions to determine if the search input is contained
@@ -37,11 +37,13 @@ def self.graded_bookmarks(searchInput)
             bookmark.score += 10
         end
         # a certain grade. when we have a final score for each bookmark,
-    end.sort! {|x, y| y.score <=> x.score}
+    end
     # we want to sort from highest to lowest score, and then
     # we want to take the highest scores and plot them on certain bubbles
-    
-    
+    # byebug
+    sorted_bookmarks = all_bookmarks.sort_by(&:score).reverse
+    # byebug
+    return sorted_bookmarks
     # closer in proximity to the search bar, and the lesser scores 
     # on the perimeters 
 end
