@@ -1,12 +1,22 @@
 class BookmarksController < ApplicationController
-    def index
+    def search 
+        puts params[:search]
         bookmarks = Bookmark.graded_bookmarks(params[:search])
+        byebug
+        render json: bookmarks
+    end 
+
+    def index
+        bookmarks = Bookmark.all
         render json: bookmarks 
     end 
 
     def show 
-        bookmark = Bookmark.find(params[:id])
-        render json: bookmark 
+        # bookmark = Bookmark.find(params[:id])
+        # render json: bookmark 
+        byebug
+        bookmarks = Bookmark.graded_bookmarks(params[:search])
+        render json: bookmarks
     end 
 
     def create 
