@@ -16,9 +16,16 @@ class BookmarksController < ApplicationController
     end 
 
     def create 
+
         page = MetaInspector.new(params[:url])
         bookmark = Bookmark.create(url: page.url, image: page.images.best, h1: page.title, body: page.description, score: 0 ,user_id: 1)
-        render json: bookmark 
+        
+        if bookmark.valid?
+            render json: bookmark
+        else 
+            flash[:errors_array] = bookmark.errors.full_messages    
+        end 
+
     end 
 
     def update 

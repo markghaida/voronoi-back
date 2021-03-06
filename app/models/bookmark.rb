@@ -3,6 +3,8 @@ class Bookmark < ApplicationRecord
     has_many :bookmark_tags 
     has_many :tags, through: :bookmark_tags 
 
+    validates :url, uniqueness: true 
+
 # When someone is searching, the search input should be analyzed and
 # checked to see if there is a match with either a tag, h1, url, or body
 # grades for each attribute match:
