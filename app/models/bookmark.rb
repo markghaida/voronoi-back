@@ -43,7 +43,7 @@ def self.graded_bookmarks(searchInput)
             byebug
             bookmark.score += 10
         end
-        
+        #h
         # a certain grade. when we have a final score for each bookmark,
     end
     # we want to sort from highest to lowest score, and then
