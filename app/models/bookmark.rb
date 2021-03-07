@@ -28,11 +28,12 @@ def self.graded_bookmarks(searchInput)
         # with if conditions to determine if the search input is contained
         # in any of the attributes for that particular bookmark, if it is, 
         # each attribute it is contained in will update the score based on 
+        puts 
         puts bookmark 
-        puts bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
-        puts bookmark.h1.downcase.include?(searchInput.downcase)
-        puts bookmark.body.downcase.include?(searchInput.downcase)
-        puts bookmark.url.downcase.include?(searchInput.downcase)
+        puts bookmark.tags[0].category_name.downcase
+        puts bookmark.h1.downcase
+        puts bookmark.body.downcase
+        puts bookmark.url.downcase
 
         if bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
             bookmark.score += 40
