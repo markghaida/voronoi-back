@@ -19,11 +19,12 @@ class BookmarksController < ApplicationController
 
         page = MetaInspector.new(params[:url])
         bookmark = Bookmark.create(url: page.url, image: page.images.best, h1: page.title, body: page.description, score: 0 ,user_id: 1)
-        
+        byebug
         if bookmark.valid?
             render json: bookmark
         else 
-            flash[:errors_array] = bookmark.errors.full_messages    
+            error = bookmark.errors.full_messages    
+            render json: error
         end 
 
     end 
