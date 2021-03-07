@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
     def search 
         bookmarks = Bookmark.graded_bookmarks(params[:search])
-        render json: bookmarks
+        render json: {query: params[:search], bookmarks: bookmarks}
     end 
 
     def index
