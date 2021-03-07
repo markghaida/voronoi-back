@@ -28,14 +28,14 @@ def self.graded_bookmarks(searchInput)
         # with if conditions to determine if the search input is contained
         # in any of the attributes for that particular bookmark, if it is, 
         # each attribute it is contained in will update the score based on 
-        if bookmark.tags.include?(searchInput)
+        if bookmark.tags.downcase.include?(searchInput.downcase.)
             bookmark.score += 40
             # byebug
-        elsif bookmark.h1.include?(searchInput)
+        elsif bookmark.h1.downcase.include?(searchInput.downcase)
             bookmark.score += 30 
-        elsif bookmark.body.include?(searchInput)
+        elsif bookmark.body.downcase.include?(searchInput.downcase)
             bookmark.score += 20
-        elsif bookmark.url.include?(searchInput)
+        elsif bookmark.url.downcase.include?(searchInput.downcase)
             bookmark.score += 10
         end
         # a certain grade. when we have a final score for each bookmark,
