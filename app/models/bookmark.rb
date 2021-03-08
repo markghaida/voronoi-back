@@ -37,15 +37,12 @@ def self.graded_bookmarks(searchInput)
         if bookmark.tags[0].category_name
             if bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
                 bookmark.score += 40
-            
-            else
-                bookmark.tags[0].category_name = "item"
             end 
         elsif bookmark.h1.downcase.include?(searchInput.downcase)
-            bookmark.score += 30 
+            bookmark.score += 30
         elsif bookmark.body.downcase.include?(searchInput.downcase)
             bookmark.score += 20
-        elsif bookmark.url.downcase.include?(searchInput.downcase)
+        elsif bookmark.url.include?(searchInput.downcase)
             bookmark.score += 10
         end
         # h
