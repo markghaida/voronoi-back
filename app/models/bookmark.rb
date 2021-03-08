@@ -34,18 +34,17 @@ def self.graded_bookmarks(searchInput)
         # puts bookmark.h1.downcase
         # puts bookmark.body.downcase
         # puts bookmark.url.downcase
-        if bookmark.tags[0].category_name
-            if bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
-                bookmark.score += 40
-            end 
+
+        if bookmark.tags && bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
+              bookmark.score += 40
         elsif bookmark.h1.downcase.include?(searchInput.downcase)
-            bookmark.score += 30
+            bookmark.score += 30 
         elsif bookmark.body.downcase.include?(searchInput.downcase)
             bookmark.score += 20
-        elsif bookmark.url.include?(searchInput.downcase)
+        elsif bookmark.url.downcase.include?(searchInput.downcase)
             bookmark.score += 10
         end
-        # h
+        #h
         # a certain grade. when we have a final score for each bookmark,
     end
     # we want to sort from highest to lowest score, and then
@@ -56,7 +55,6 @@ def self.graded_bookmarks(searchInput)
     return sorted_bookmarks
     # closer in proximity to the search bar, and the lesser scores 
     # on the perimeters 
-    #test line
 end
 
 
