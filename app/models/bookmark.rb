@@ -48,7 +48,7 @@ def self.graded_bookmarks(searchInput)
         elsif bookmark.url.downcase.include?(searchInput.downcase)
             bookmark.score += 10
         end
-        #h
+        # h
         # a certain grade. when we have a final score for each bookmark,
     end
     # we want to sort from highest to lowest score, and then
