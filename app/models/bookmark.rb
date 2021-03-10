@@ -13,6 +13,7 @@ class Bookmark < ApplicationRecord
     
 
     validates :url, uniqueness: true 
+    validates :id, uniqueness: true 
 
 
     def self.create_keywords(page)
