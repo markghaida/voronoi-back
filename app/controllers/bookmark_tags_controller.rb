@@ -6,6 +6,7 @@ class BookmarkTagsController < ApplicationController
 
     def show 
         bookmark_tag = BookmarkTag.find(params[:id])
+        # byebug
         render json: bookmark_tag
     end 
 

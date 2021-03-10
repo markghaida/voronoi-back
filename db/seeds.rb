@@ -1,10 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# # This file should contain all the record creation needed to seed the database with its default values.
+# # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+# #
+# # Examples:
+# #
+# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+# #   Character.create(name: 'Luke', movie: movies.first)
 
 
 User.create(username: "markymark")
@@ -33,7 +33,7 @@ Tag.create(category_name: "Medical", image: "https://i.pinimg.com/736x/4a/91/a6/
 
 Tag.create(category_name: "Gaming", image: "https://i.pinimg.com/736x/4a/91/a6/4a91a6b4f09c7df99a6352db06f7a701.jpg")
 
-
+Tag.create(category_name: nil, image: "https://studio.uxpincdn.com/studio/wp-content/uploads/2020/02/BlogpostHeader_CodingLanguages_1200x600-1024x512.png.webp") 
 
 
 Bookmark.create(url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch", image: "https://i.ibb.co/8DGbH48/Coding-Category.png", h1: "Using Fetch - Web APIs | MDN", body: "The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses", score: 10, user_id: 1)
@@ -81,3 +81,11 @@ BookmarkTag.create(bookmark_id: 11, tag_id: 11)
 BookmarkTag.create(bookmark_id: 12, tag_id: 9)
 BookmarkTag.create(bookmark_id: 13, tag_id: 12)
 BookmarkTag.create(bookmark_id: 14, tag_id: 12)
+
+SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 2, score: 10)
+SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 3, score: 20)
+SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 4, score: 30)
+SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 5, score: 40)
+SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 6, score: 50)
+SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 7, score: 60)
+SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 8, score:70)
