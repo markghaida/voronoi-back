@@ -6,7 +6,6 @@
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
 
-
 User.create(username: "markymark")
 
 Tag.create(category_name: "Coding", image: "https://studio.uxpincdn.com/studio/wp-content/uploads/2020/02/BlogpostHeader_CodingLanguages_1200x600-1024x512.png.webp")
@@ -35,7 +34,6 @@ Tag.create(category_name: "Gaming", image: "https://i.pinimg.com/736x/4a/91/a6/4
 
 Tag.create(category_name: nil, image: "https://studio.uxpincdn.com/studio/wp-content/uploads/2020/02/BlogpostHeader_CodingLanguages_1200x600-1024x512.png.webp") 
 
-
 Bookmark.create(url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch", image: "https://i.ibb.co/8DGbH48/Coding-Category.png", h1: "Using Fetch - Web APIs | MDN", body: "The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses", score: 10, user_id: 1)
 
 Bookmark.create(url: "https://www.petsbest.com/dog-owners-guide", image: "https://i.ibb.co/qdqXGJn/Pet-Category.png", h1: "New Dog Owner’s Guide by Pets Best", body: "The prospect of adding a new puppy to your family can be incredibly exciting. Most dog owners would agree that having a constant, loyal companion who loves them unconditionally brings a tremendous amount of joy to their lives", score: 10, user_id: 1)
@@ -54,7 +52,6 @@ Bookmark.create(url: "https://ashevillebeecharmer.com/honey-education/top-10-hon
 
 Bookmark.create(url: "https://www.salesrabbit.com/insights/top-success-tips-from-gary-vee", image: "https://www.salesrabbit.com/wp-content/uploads/2018/08/Vaynerchuck-version.png", h1: "Top Success Tips From Gary Vee | SalesRabbit", body: "There are few people as inspiring as Gary Vee. Here are some of our favorite quotes from him to help you skyrocket toward success.", score: 80, user_id: 1)
 
-Bookmark.create(url: "https://www.headspace.com/blog/2017/12/26/useless-platitudes/", image: "https://s3-us-west-2.amazonaws.com/hs-production-blog/blog/wp-content/uploads/2017/12/21135420/122617_bullshit_platitudes_feature.jpg", h1: "10 useless platitudes to stop saying this year", body: "We should hang out!", score: 20, user_id: 1)
 
 Bookmark.create(url: "https://www.healthline.com/health/home-remedies-for-cysts", image: "https://post.healthline.com/wp-content/uploads/2018/11/honey-1200x628-facebook.jpg", h1: "Home Remedies for Cysts: What Actually Works?", body: "The most reliable way to remove a cyst is to have your doctor do it. However, some studies suggest a few home remedies could help, such as apple cider vinegar and tea tree oil. More research is still necessary, but this is what we know so far.", score: 10, user_id: 1)
 
@@ -82,10 +79,12 @@ BookmarkTag.create(bookmark_id: 12, tag_id: 9)
 BookmarkTag.create(bookmark_id: 13, tag_id: 12)
 BookmarkTag.create(bookmark_id: 14, tag_id: 12)
 
-SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 2, score: 10)
-SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 3, score: 20)
-SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 4, score: 30)
-SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 5, score: 40)
-SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 6, score: 50)
-SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 7, score: 60)
-SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 8, score:70)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 2, score: 10)
+# SecondaryScore.create(bookmark_a_id: 2, bookmark_b_id: 1, score: 10)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 3, score: 20)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 4, score: 30)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 5, score: 40)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 6, score: 50)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 7, score: 60)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 8, score:70)
+# SecondaryScore.create(bookmark_a_id: 1, bookmark_b_id: 2, score: 10)

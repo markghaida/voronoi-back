@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_000538) do
+ActiveRecord::Schema.define(version: 2021_03_02_011724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,6 @@ ActiveRecord::Schema.define(version: 2021_03_09_000538) do
     t.string "body"
     t.integer "score"
     t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "secondary_scores", force: :cascade do |t|
-    t.integer "bookmark_a_id"
-    t.integer "bookmark_b_id"
-    t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

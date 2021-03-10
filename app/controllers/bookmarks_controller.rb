@@ -2,7 +2,9 @@ class BookmarksController < ApplicationController
    
     def search 
         bookmarks = Bookmark.graded_bookmarks(params[:search])
-        render json: bookmarks
+        # byebug
+        # bookmarks.unshift({search: `#{params[:search]}`})
+        render json: {search: params[:search], bookmarks: bookmarks}
     end 
 
     def index
@@ -18,10 +20,12 @@ class BookmarksController < ApplicationController
     def create 
         page = MetaInspector.new(params[:url])
         bookmark = Bookmark.create(url: page.url, image: page.images.best, h1: page.title, body: page.description, score: 0 ,user_id: 1)
+
+
         if bookmark.valid?
             # byebug
-            Bookmark.create_keywords(page)
-            render json: Bookmark.last 
+            # Bookmark.create_keywords(page)
+            render json: bookmark 
         else 
             error = bookmark.errors.full_messages    
             render json: error

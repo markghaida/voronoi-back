@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :secondary_scores
   resources :tags
   # resources :bookmark_tags
   # resources :bookmarks
