@@ -52,14 +52,13 @@ Bookmark.create(url: "https://ashevillebeecharmer.com/honey-education/top-10-hon
 
 Bookmark.create(url: "https://www.salesrabbit.com/insights/top-success-tips-from-gary-vee", image: "https://www.salesrabbit.com/wp-content/uploads/2018/08/Vaynerchuck-version.png", h1: "Top Success Tips From Gary Vee | SalesRabbit", body: "There are few people as inspiring as Gary Vee. Here are some of our favorite quotes from him to help you skyrocket toward success.", score: 80, user_id: 1)
 
-
 Bookmark.create(url: "https://www.healthline.com/health/home-remedies-for-cysts", image: "https://post.healthline.com/wp-content/uploads/2018/11/honey-1200x628-facebook.jpg", h1: "Home Remedies for Cysts: What Actually Works?", body: "The most reliable way to remove a cyst is to have your doctor do it. However, some studies suggest a few home remedies could help, such as apple cider vinegar and tea tree oil. More research is still necessary, but this is what we know so far.", score: 10, user_id: 1)
 
 Bookmark.create(url: "https://www.exploringourglobe.com/explore/top-10-countries-to-visit-for-2020", image: "https://www.exploringourglobe.com/.image/t_share/MTcxNTU3MTg1ODI4OTU1NDk2/screenshot-2020-04-02-at-125136-pm.png", h1: "Top 10 Countries To Visit For 2020/2021 - Exploring Our Globe", body: "It's time to get planning the ultimate trip.", score: 25, user_id: 1)
 
 Bookmark.create(url: "https://www.ranker.com/list/reasons-xbox-is-better-than-playstation/collin-flatt", image: "https://imgix.ranker.com/list_img_v2/10994/2670994/original/reasons-xbox-is-better-than-playstation?w=817&h=427&fm=jpg&q=50&fit=crop", h1: "15 Reasons Xbox Is Better Than PlayStation", body: "There are plenty of reasons why Xbox is better than PlayStation, even though the Sony disciples will try to convince you of otherwise. While Sony's ...", score: 75, user_id: 1)
 
-Bookmark.create(url: "https://www.goliath.com/gaming/10-reasons-to-choose-xbox-one-over-playstation-4/", image: "https://www.goliath.com/gaming/10-reasons-to-choose-xbox-one-over-playstation-4/", h1: "10 Reasons To Choose Xbox One Over PlayStation 4 - Goliath", body: "Xbox is for the best and coolest people in the world. Except if your names 'Joe'.", score: 60, user_id: 1)
+# Bookmark.create(url: "https://www.goliath.com/gaming/10-reasons-to-choose-xbox-one-over-playstation-4/", image: "", h1: "10 Reasons To Choose Xbox One Over PlayStation 4 - Goliath", body: "Xbox is for the best and coolest people in the world. Except if your names 'Joe'.", score: 60, user_id: 1)
 
 
 
@@ -75,7 +74,7 @@ BookmarkTag.create(bookmark_id: 8, tag_id: 10)
 BookmarkTag.create(bookmark_id: 9, tag_id: 8)
 BookmarkTag.create(bookmark_id: 10, tag_id: 6)
 BookmarkTag.create(bookmark_id: 11, tag_id: 11)
-BookmarkTag.create(bookmark_id: 12, tag_id: 9)
+# BookmarkTag.create(bookmark_id: 12, tag_id: 9)
 BookmarkTag.create(bookmark_id: 13, tag_id: 12)
 BookmarkTag.create(bookmark_id: 14, tag_id: 12)
 
