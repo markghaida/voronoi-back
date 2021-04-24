@@ -130,11 +130,17 @@ class Bookmark < ApplicationRecord
 
             if bookmark.tags && bookmark.tags[0] && bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
                 bookmark.score += 40
-            elsif bookmark.h1.downcase.include?(searchInput.downcase)
+            end 
+            
+            if bookmark.h1.downcase.include?(searchInput.downcase)
                 bookmark.score += 30 
-            elsif bookmark.body && bookmark.body.downcase.include?(searchInput.downcase)
+            end
+            
+            if bookmark.body && bookmark.body.downcase.include?(searchInput.downcase)
                 bookmark.score += 20
-            elsif  bookmark.url && bookmark.url.downcase.include?(searchInput.downcase)
+            end 
+            
+            if  bookmark.url && bookmark.url.downcase.include?(searchInput.downcase)
                 bookmark.score += 10
             # else 
                 # create logic to create a bookmark_tag
