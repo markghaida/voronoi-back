@@ -35,7 +35,7 @@ class BookmarksController < ApplicationController
             end 
             # byebug
             # Bookmark.create_keywords(page)
-
+            
             render json: bookmark 
         else 
             error = bookmark.errors.full_messages    
