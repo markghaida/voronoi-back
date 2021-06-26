@@ -1,3 +1,5 @@
+require 'set'
+
 class Bookmark < ApplicationRecord
     
     # has_many(:secondary_scores, foreign_key: :bookmark_a_id, dependent: :destroy)
@@ -117,6 +119,35 @@ class Bookmark < ApplicationRecord
 
     # end 
 
+    def creating_adj_list(bookmarks)
+        all_bookmarks = bookmarks  
+        all_bookmarks.each do |bookmark|
+            all_bookmarks.each do |other_bookmark|
+                if bookmark != other_bookmark
+                    adj_list = {}
+                    adj_list[bookmark] = Set.new
+                    # byebug 
+                    puts adj_list
+                    if bookmark.tags && bookmark.tags[0] && bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
+                        adj_list[bookmark] << other_bookmark 
+                    end 
+                    
+                    if bookmark.h1.downcase.include?(other_bookmark.h1.downcase)
+                        adj_list[bookmark] << other_bookmark
+                    end
+                    
+                    if bookmark.body && bookmark.body.downcase.include?(searchInput.downcase)
+                        adj_list[bookmark] << other_bookmark
+                    end 
+                    
+                    if  bookmark.url && bookmark.url.downcase.include?(searchInput.downcase)
+                        adj_list[bookmark] << other_bookmark
+                    end
+                    
+                end 
+            end 
+        end
+    end 
 
     def self.graded_bookmarks(searchInput)
         # byebug
@@ -128,6 +159,11 @@ class Bookmark < ApplicationRecord
             # in any of the attributes for that particular bookmark, if it is, 
             # each attribute it is contained in will update the score based on 
 
+
+            # we want to take the current list of relevant bookmarks, run them through all bookmarks, and create another score  
+            #ensure no duplicates 
+            #out put should be an array of arrays 
+            #compare the current bookmark with the new bookmark and grade based on any matches 
             if bookmark.tags && bookmark.tags[0] && bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
                 bookmark.score += 40
             end 
@@ -154,12 +190,58 @@ class Bookmark < ApplicationRecord
         # all_bookmarks.unshift({searchInput: searchInput})
         sorted_bookmarks = all_bookmarks.sort_by(&:score).reverse
         # byebug
+        # secondary_score(sorted_bookmarks, all_bookmarks)
         return sorted_bookmarks
         # closer in proximity to the search bar, and the lesser scores 
         # on the perimeters 
     end
 
+    def self.secondary_score(first_graded_bookmarks)
+        first_graded_bookmarks.each do |bookmark|
+            #go through the list of already graded bookmarks
+            # compare all the bookmarks that are above 9 to each bookmark in the list 
+            # do another scoring 
+            if bookmark.score > 9
+                all_bookmarks.each do |second_bookmark|
+            # we want to take the current list of relevant bookmarks, run them through all bookmarks, and create another score  
+            #ensure no duplicates 
+            #out put should be an array of arrays 
+            #compare the current bookmark with the new bookmark and grade based on any matches 
 
 
+            #think about how to create a score based on a search, and the another score that is generated when you compare each bookmark
+            # in the already graded list with all bookmarks again.
 
-end 
+            # There should be a separate attribute that describes the relationship between the primary bookmark, and its associated
+            # bookmarks through a secondary score.
+
+            # These are ideally stored in a hash to display related bookmarks to the main one.
+
+            #if a bookmark exists in two hashes, representing a secondary bookmark relating to two big bookmarks, they need to be in a hash
+            # for each big bookmark, as well as have a value that is a score which describes that secodary bookmark and how closely its related to each
+                # big bookmark
+
+                    if bookmark.tags && bookmark.tags[0] && bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
+                        bookmark.score += 40
+                    end 
+                
+                    if bookmark.h1.downcase.include?(searchInput.downcase)
+                        bookmark.score += 30 
+                    end
+                    
+                    if bookmark.body && bookmark.body.downcase.include?(searchInput.downcase)
+                        bookmark.score += 20
+                    end 
+                    
+                    if  bookmark.url && bookmark.url.downcase.include?(searchInput.downcase)
+                        bookmark.score += 10
+                    # else 
+                        # create logic to create a bookmark_tag
+                    end
+                end 
+            end 
+        end
+    end 
+end
+
+
