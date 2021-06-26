@@ -36,6 +36,9 @@ class BookmarksController < ApplicationController
             # byebug
             # Bookmark.create_keywords(page)
 
+            #THIS IS WHERE I NEED TO CALL THE SECONDARY SCORE METHOD 
+            Bookmark.creating_adj_list(Bookmark.all)
+            
             render json: bookmark 
         else 
             error = bookmark.errors.full_messages    
@@ -49,8 +52,8 @@ class BookmarksController < ApplicationController
     end 
 
     def destroy
-        bookmark = Bookmark.find(params[:id])
-        bookmark.destroy()
+        # bookmark = Bookmark.find(params[:id])
+        # bookmark.destroy()
         render json: {}
     end 
 end
