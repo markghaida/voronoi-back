@@ -96,6 +96,7 @@ class Bookmark < ApplicationRecord
             # byebug
             adj_list = Set.new
             # byebug
+            # byebug
             # first successfully display all similar bookmarks when returning json to front-end
             #after, throw all the similar bookmarks into a Set and store that set DS into the similar_bookmarks array
             # to the corresponding and related bookmark 
