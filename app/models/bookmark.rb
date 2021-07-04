@@ -94,6 +94,7 @@ class Bookmark < ApplicationRecord
         bookmarks = Bookmark.all
         bookmarks.each do |bookmark|
             # byebug
+            # byebug
             adj_list = Set.new
             # byebug
             # first successfully display all similar bookmarks when returning json to front-end
