@@ -1,14 +1,13 @@
 class BookmarksController < ApplicationController
-   
     def search 
         bookmarks = Bookmark.graded_bookmarks(params[:search])
         # byebug
-        # bookmarks.unshift({search: `#{params[:search]}`})
         render json: {search: params[:search], bookmarks: bookmarks}
     end 
 
     def index
         bookmarks = Bookmark.all
+        # byebug
         render json: bookmarks 
         #test
     end 
@@ -24,22 +23,20 @@ class BookmarksController < ApplicationController
         
         if bookmark.valid?
             keywords = page.title.split(" ")
-
             # byebug
             keywords.each do |word|
                 new_tag = Tag.create(category_name: word, image: page.images.best)
-                
-                BookmarkTag.create(bookmark_id: bookmark.id, tag_id: Tag.last.id)
-            
+                BookmarkTag.create(bookmark_id: bookmark.id, tag_id: Tag.last.id) #potentially issues using Tag.last.id ...it sometimes puts the incorrect tag
                 # byebug
             end 
             # byebug
             # Bookmark.create_keywords(page)
-
             #THIS IS WHERE I NEED TO CALL THE SECONDARY SCORE METHOD 
-            Bookmark.creating_adj_list(Bookmark.all)
-            
-            render json: bookmark 
+            Bookmark.creating_adj_list()
+            # Bookmark.all = adjacent_list
+            #how do we give all other             
+            # render json: bookmark 
+            render json: bookmark
         else 
             error = bookmark.errors.full_messages    
             render json: error
@@ -52,8 +49,8 @@ class BookmarksController < ApplicationController
     end 
 
     def destroy
-        # bookmark = Bookmark.find(params[:id])
-        # bookmark.destroy()
+        bookmark = Bookmark.find(params[:id])
+        bookmark.destroy()
         render json: {}
     end 
 end

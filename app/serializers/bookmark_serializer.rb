@@ -1,5 +1,5 @@
 class BookmarkSerializer < ActiveModel::Serializer
-  attributes :id, :url, :h1, :image, :body, :score,:user_id 
+  attributes :id, :url, :h1, :image, :body, :score,:user_id, :similar_bookmarks
 
   belongs_to :user 
   

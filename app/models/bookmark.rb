@@ -1,4 +1,5 @@
 require 'set'
+require 'json'
 
 class Bookmark < ApplicationRecord
     
@@ -17,6 +18,7 @@ class Bookmark < ApplicationRecord
     validates :url, uniqueness: true 
     validates :id, uniqueness: true 
 
+    # @@adj_list = ""
 
     def self.create_keywords(page)
         # byebug
@@ -88,77 +90,63 @@ class Bookmark < ApplicationRecord
     end 
 
 
-    # def self.update_score(page, second_score, bookmark)
-    #     byebug 
-    #     if page.meta_tag['name']['keywords']
-    #         page.meta_tag['name']['keywords'].each do |word|
-    #             byebug
-    #             bookmark.tags.each do |tag| 
-    #                 byebug
-    #                 if word.downcase.include?(tag.category_name.downcase)
-    #                     second_score.update(score: second_score.score+= 40) 
-    #                 end 
-    #             end 
-    #         end
-    #     end 
-           
-    #     if page.title.downcase.include?(bookmark.h1.downcase)
-    #             # byebug  
-    #         second_score.update(score: second_score.score+= 30)  
-    #     end 
-                
-    #     if page.description.downcase.include?(bookmark.body.downcase)
-    #                 # byebug  
-    #         second_score.update(score: second_score.score+= 20) 
-    #     end 
-                
-    #     if page.url.downcase.include?(bookmark.url.downcase)
-    #                 # byebug  
-    #         second_score.update(score: second_score.score+= 10) 
-    #     end
-
-    # end 
-
-    def creating_adj_list(bookmarks)
-        all_bookmarks = bookmarks  
-        all_bookmarks.each do |bookmark|
-            all_bookmarks.each do |other_bookmark|
+    def self.creating_adj_list()
+        bookmarks = Bookmark.all
+        bookmarks.each do |bookmark|
+            # byebug
+            adj_list = Set.new
+            # byebug
+            # first successfully display all similar bookmarks when returning json to front-end
+            #after, throw all the similar bookmarks into a Set and store that set DS into the similar_bookmarks array
+            # to the corresponding and related bookmark 
+            bookmarks.each do |other_bookmark|
                 if bookmark != other_bookmark
-                    adj_list = {}
-                    adj_list[bookmark] = Set.new
                     # byebug 
-                    puts adj_list
-                    if bookmark.tags && bookmark.tags[0] && bookmark.tags[0].category_name.downcase.include?(searchInput.downcase)
-                        adj_list[bookmark] << other_bookmark 
+                    if bookmark.tags && bookmark.tags[0] && other_bookmark.tags && other_bookmark.tags[0] && bookmark.tags[0].category_name.downcase.include?(other_bookmark.tags[0].category_name.downcase)
+                        adj_list.add(other_bookmark)
+                        # byebug
                     end 
                     
-                    if bookmark.h1.downcase.include?(other_bookmark.h1.downcase)
-                        adj_list[bookmark] << other_bookmark
+                    if other_bookmark.h1 && bookmark.h1.downcase.include?(other_bookmark.h1.downcase)
+                        adj_list.add(other_bookmark)
+                        # byebug
                     end
                     
-                    if bookmark.body && bookmark.body.downcase.include?(searchInput.downcase)
-                        adj_list[bookmark] << other_bookmark
+                    if other_bookmark.body && bookmark.body && bookmark.body.downcase.include?(other_bookmark.body.downcase)
+                        adj_list.add(other_bookmark)
+                        # byebug
                     end 
                     
-                    if  bookmark.url && bookmark.url.downcase.include?(searchInput.downcase)
-                        adj_list[bookmark] << other_bookmark
+                    if  other_bookmark.url && bookmark.url && bookmark.url.downcase.include?(other_bookmark.url.downcase)
+                        adj_list.add(other_bookmark)
+                        # byebug
                     end
-                    
                 end 
-            end 
+                # byebug
+                # chicken = ["Chicken"]
+                adj_before_json = { "similar_bookmarks": adj_list}
+                adj_json = adj_before_json.to_json 
+                # byebug
+                bookmark.update(similar_bookmarks: adj_json)
+            end
+            # byebug
         end
     end 
 
     def self.graded_bookmarks(searchInput)
         # byebug
+        
         # goes through a for loop of all the bookmarks,
         all_bookmarks = Bookmark.all.each do |bookmark|
+            # byebug
             # set the bookmark.score = 0 at the top of this method, then
+            # goes through a for loop of all the bookmarks,
+            # bookmark[0]["score"] = 0 
             bookmark.score = 0 
             # with if conditions to determine if the search input is contained
             # in any of the attributes for that particular bookmark, if it is, 
             # each attribute it is contained in will update the score based on 
-
+            # byebug
 
             # we want to take the current list of relevant bookmarks, run them through all bookmarks, and create another score  
             #ensure no duplicates 
@@ -189,6 +177,10 @@ class Bookmark < ApplicationRecord
         # byebug
         # all_bookmarks.unshift({searchInput: searchInput})
         sorted_bookmarks = all_bookmarks.sort_by(&:score).reverse
+
+        # HERE WE SHOULD FILTER BY SCORE, THEN ITERATE THROUGH ALL RELEVANT ITEMS
+        #AND USE THE MOST APPPROPRIATE DATA STRUCTURE TO STORE ALL OF THOSE ITEMS
+
         # byebug
         # secondary_score(sorted_bookmarks, all_bookmarks)
         return sorted_bookmarks
@@ -245,3 +237,35 @@ class Bookmark < ApplicationRecord
 end
 
 
+
+
+    # def self.update_score(page, second_score, bookmark)
+    #     byebug 
+    #     if page.meta_tag['name']['keywords']
+    #         page.meta_tag['name']['keywords'].each do |word|
+    #             byebug
+    #             bookmark.tags.each do |tag| 
+    #                 byebug
+    #                 if word.downcase.include?(tag.category_name.downcase)
+    #                     second_score.update(score: second_score.score+= 40) 
+    #                 end 
+    #             end 
+    #         end
+    #     end 
+           
+    #     if page.title.downcase.include?(bookmark.h1.downcase)
+    #             # byebug  
+    #         second_score.update(score: second_score.score+= 30)  
+    #     end 
+                
+    #     if page.description.downcase.include?(bookmark.body.downcase)
+    #                 # byebug  
+    #         second_score.update(score: second_score.score+= 20) 
+    #     end 
+                
+    #     if page.url.downcase.include?(bookmark.url.downcase)
+    #                 # byebug  
+    #         second_score.update(score: second_score.score+= 10) 
+    #     end
+
+    # end 
