@@ -19,6 +19,7 @@ class Bookmark < ApplicationRecord
     validates :id, uniqueness: true 
 
     # @@adj_list = ""
+    # @@adj_list = ""
 
     def self.create_keywords(page)
         # byebug
