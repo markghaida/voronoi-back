@@ -6,7 +6,7 @@ class Bookmark < ApplicationRecord
     # has_many(:secondary_scores, foreign_key: :bookmark_a_id, dependent: :destroy)
     # has_many(:reverse_secondary_scores, class_name: :secondary_score,
     #   foreign_key: :bookmark_b_id, dependent: :destroy)
-
+    #c
     # has_many :bookmarks, through: :secondary_scores, source: :bookmark_b
 
 
