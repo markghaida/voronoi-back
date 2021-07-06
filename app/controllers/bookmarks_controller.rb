@@ -33,9 +33,6 @@ class BookmarksController < ApplicationController
             # Bookmark.create_keywords(page)
             #THIS IS WHERE I NEED TO CALL THE SECONDARY SCORE METHOD 
             Bookmark.creating_adj_list()
-            # Bookmark.all = adjacent_list
-            #how do we give all other             
-            # render json: bookmark 
             render json: bookmark
         else 
             error = bookmark.errors.full_messages    
