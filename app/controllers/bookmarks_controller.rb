@@ -13,7 +13,7 @@ class BookmarksController < ApplicationController
     end 
 
     def show 
-        bookmarks = Bookmark.graded_bookmarks(params[:search])
+        bookmarks = Bookmark.find(params[:id])
         render json: bookmarks
     end 
 
