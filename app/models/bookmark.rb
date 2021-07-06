@@ -19,7 +19,6 @@ class Bookmark < ApplicationRecord
     validates :id, uniqueness: true 
 
     # @@adj_list = ""
-    # @@adj_list = ""
 
     def self.create_keywords(page)
         # byebug
@@ -125,7 +124,7 @@ class Bookmark < ApplicationRecord
                     end
                 end 
                 # byebug
-                # chicken = ["Chicken"]
+
                 adj_before_json = { "similar_bookmarks": adj_list}
                 adj_json = adj_before_json.to_json 
                 # byebug
@@ -143,7 +142,6 @@ class Bookmark < ApplicationRecord
             # byebug
             # set the bookmark.score = 0 at the top of this method, then
             # goes through a for loop of all the bookmarks,
-            # bookmark[0]["score"] = 0 
             bookmark.score = 0 
             # with if conditions to determine if the search input is contained
             # in any of the attributes for that particular bookmark, if it is, 
@@ -237,37 +235,3 @@ class Bookmark < ApplicationRecord
         end
     end 
 end
-
-
-
-
-    # def self.update_score(page, second_score, bookmark)
-    #     byebug 
-    #     if page.meta_tag['name']['keywords']
-    #         page.meta_tag['name']['keywords'].each do |word|
-    #             byebug
-    #             bookmark.tags.each do |tag| 
-    #                 byebug
-    #                 if word.downcase.include?(tag.category_name.downcase)
-    #                     second_score.update(score: second_score.score+= 40) 
-    #                 end 
-    #             end 
-    #         end
-    #     end 
-           
-    #     if page.title.downcase.include?(bookmark.h1.downcase)
-    #             # byebug  
-    #         second_score.update(score: second_score.score+= 30)  
-    #     end 
-                
-    #     if page.description.downcase.include?(bookmark.body.downcase)
-    #                 # byebug  
-    #         second_score.update(score: second_score.score+= 20) 
-    #     end 
-                
-    #     if page.url.downcase.include?(bookmark.url.downcase)
-    #                 # byebug  
-    #         second_score.update(score: second_score.score+= 10) 
-    #     end
-
-    # end 
